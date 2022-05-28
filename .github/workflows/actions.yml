@@ -1,0 +1,24 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect and run Scripts
+        uses: appleboy/ssh-action@master
+        with:
+          host: 54.255.233.201
+          username: ubuntu
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: |
+            ls -a
